@@ -1040,6 +1040,13 @@ footer .mono{font-size:12px}
       });
     });
   });
+
+  /* ---------- Visitor counter (silent, privacy-friendly) ---------- */
+  (function(){
+    try{
+      fetch('https://api.counterapi.dev/v1/alkhaldi.dev/visitors/up', {mode:'no-cors'}).catch(function(){});
+    }catch(e){}
+  })();
 })();
 </script>
 </body>
