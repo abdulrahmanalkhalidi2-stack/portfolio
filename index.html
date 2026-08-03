@@ -355,6 +355,34 @@ footer{border-top:1px solid var(--border);padding:34px 0;position:relative;z-ind
 footer p{font-size:13px;color:var(--faint)}
 footer .mono{font-size:12px}
 
+/* ============ PRO POLISH ============ */
+/* scroll progress bar */
+#progress{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent-2));z-index:120;box-shadow:0 0 12px var(--accent-glow);transition:width .08s linear}
+/* back to top */
+#toTop{position:fixed;right:22px;bottom:22px;z-index:90;width:44px;height:44px;border-radius:12px;border:1px solid var(--border-2);background:color-mix(in srgb,var(--surface) 85%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--accent);cursor:pointer;display:grid;place-items:center;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s,border-color .2s,box-shadow .2s}
+#toTop.show{opacity:1;transform:none;pointer-events:auto}
+#toTop:hover{border-color:var(--accent);box-shadow:0 0 20px var(--accent-glow)}
+#toTop svg{width:18px;height:18px;stroke:currentColor}
+/* custom scrollbar */
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--faint) 45%,transparent);border-radius:99px;border:2px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+/* focus visibility */
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+/* nav active indicator */
+nav.links a{position:relative}
+nav.links a::after{content:"";position:absolute;left:13px;right:13px;bottom:5px;height:2px;border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+nav.links a.active::after{transform:scaleX(1)}
+/* card hover glow */
+.job-card,.skill-card,.proj-card,.cert,.edu-row,.rail-item{transition:border-color .25s,transform .25s,box-shadow .25s}
+.job-card:hover,.skill-card:hover,.proj-card:hover,.cert:hover,.rail-item:hover{box-shadow:0 18px 40px -18px var(--accent-glow)}
+/* name shimmer */
+@media (prefers-reduced-motion:no-preference){
+  h1 .grad{background-size:200% auto;animation:gradShift 7s ease-in-out infinite}
+}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
 /* ============ REVEAL ============ */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
 .reveal.in{opacity:1;transform:none}
@@ -394,7 +422,7 @@ footer .mono{font-size:12px}
 
 /* ============ PRINT ============ */
 @media print{
-  header,#net,#themeBtn,#menuBtn,.btn-ghost{display:none!important}
+  header,#net,#progress,#toTop,#themeBtn,#menuBtn,.btn-ghost{display:none!important}
   body{background:#fff;color:#111;font-size:11pt}
   .hero{min-height:auto;padding:0}
   .hero-grid{grid-template-columns:1fr}
@@ -413,6 +441,7 @@ footer .mono{font-size:12px}
 <body>
 
 <canvas id="net" aria-hidden="true"></canvas>
+<div id="progress" aria-hidden="true"></div>
 
 <!-- ================= NAV ================= -->
 <header>
@@ -928,6 +957,10 @@ footer .mono{font-size:12px}
   </div>
 </footer>
 
+<button id="toTop" aria-label="Back to top" title="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
 <script>
 /* ---------- Theme ---------- */
 (function(){
@@ -972,6 +1005,85 @@ footer .mono{font-size:12px}
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
   els.forEach(el => io.observe(el));
+})();
+
+/* ---------- Scroll progress + back to top ---------- */
+(function(){
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const bar = document.getElementById('progress');
+  const topBtn = document.getElementById('toTop');
+  let ticking = false;
+  function update(){
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - innerHeight;
+    const p = max > 0 ? (scrollY / max) * 100 : 0;
+    bar.style.width = p + '%';
+    topBtn.classList.toggle('show', scrollY > 480);
+    ticking = false;
+  }
+  addEventListener('scroll', () => { if(!ticking){ requestAnimationFrame(update); ticking = true; } }, {passive:true});
+  topBtn.addEventListener('click', () => scrollTo({top:0, behavior: reduced ? 'auto' : 'smooth'}));
+  update();
+})();
+
+/* ---------- Animated counters ---------- */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const els = [...document.querySelectorAll('.stat b')].filter(b => !b.classList.contains('sm'));
+  const fmt = raw => {
+    const suf = raw.includes('+') ? '+' : '';
+    const num = parseFloat(raw);
+    const dec = raw.includes('.') ? 1 : 0;
+    return {suf, num, dec};
+  };
+  function animate(el){
+    const {suf, num, dec} = fmt(el.textContent.trim());
+    const dur = 1400, t0 = performance.now();
+    (function frame(t){
+      const k = Math.min((t - t0) / dur, 1);
+      const e = 1 - Math.pow(1 - k, 3);
+      el.textContent = (num * e).toFixed(dec) + suf;
+      if(k < 1) requestAnimationFrame(frame);
+    })(t0);
+  }
+  if(reduced){ els.forEach(el => el.textContent = el.textContent.trim()); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ animate(e.target); io.unobserve(e.target); } });
+  }, {threshold:.5});
+  els.forEach(el => io.observe(el));
+})();
+
+/* ---------- Terminal typewriter (hero card) ---------- */
+(function(){
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const host = document.querySelector('.node-top .tt');
+  if(!host || reduced) return;
+  const cursor = host.querySelector('.cursor');
+  const cmds = [
+    'whoami  →  network engineer',
+    'ping reliability  →  99.9% up',
+    'show ip route  →  OSPF · EIGRP · BGP',
+    'ssh rcjy-prod  →  connected',
+    'uptime  →  2.5+ yrs in the field'
+  ];
+  let ci = 0, pos = 0, deleting = false;
+  const base = 'engineer@alkhaldi:~$';
+  function tick(){
+    const cmd = base + ' ' + cmds[ci];
+    if(!deleting){
+      pos++;
+      host.firstChild.nodeValue = cmd.slice(0, pos);
+      if(pos >= cmd.length){ deleting = true; return setTimeout(tick, 2200); }
+    } else {
+      pos -= 2;
+      if(pos <= base.length + 1){ pos = base.length + 1; deleting = false; ci = (ci + 1) % cmds.length; }
+      host.firstChild.nodeValue = cmd.slice(0, pos);
+    }
+    setTimeout(tick, deleting ? 14 : 42);
+  }
+  host.firstChild.nodeValue = base + ' ';
+  tick();
 })();
 
 /* ---------- Background network animation ---------- */
