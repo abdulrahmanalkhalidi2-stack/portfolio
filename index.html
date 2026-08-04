@@ -331,12 +331,14 @@ h1 .grad{
 .cert h3{font-family:var(--font-d);font-size:16.5px;font-weight:700;margin-bottom:4px}
 .cert p{font-size:13.5px;color:var(--muted)}
 .cert .issuer{font-family:var(--font-m);font-size:11.5px;color:var(--faint);margin-top:6px}
-.edu-row{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:24px 26px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);margin-bottom:14px;flex-wrap:wrap;transition:border-color .25s}
-.edu-row:hover{border-color:var(--border-2)}
-.edu-row h3{font-family:var(--font-d);font-size:16.5px;font-weight:700}
-.edu-row .school{color:var(--muted);font-size:14px;margin-top:3px}
-.edu-meta{text-align:right;font-family:var(--font-m);font-size:12px;color:var(--faint);line-height:1.8}
-.edu-meta .gpa{color:var(--ok);font-weight:600;font-size:13px}
+.edu-row{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;padding:24px 26px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);margin-bottom:14px;flex-wrap:wrap;transition:border-color .25s,transform .25s}
+.edu-row:hover{border-color:var(--border-2);transform:translateY(-2px)}
+.edu-row h3{font-family:var(--font-d);font-size:19px;font-weight:700;letter-spacing:-.01em}
+.edu-row .school{font-family:var(--font-m);font-size:13px;color:var(--accent);margin-top:5px}
+.edu-meta{text-align:right;font-family:var(--font-m);font-size:12px;color:var(--faint);letter-spacing:.05em;line-height:1.8}
+.edu-period{display:inline-block;font-size:11.5px;color:var(--accent);background:var(--accent-dim);border:1px solid var(--border);padding:5px 12px;border-radius:999px;margin-bottom:6px}
+.edu-meta .gpa{display:inline-block;color:#fbbf24;font-weight:700;font-size:13px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.35);padding:3px 11px;border-radius:999px;letter-spacing:.03em;margin-bottom:6px}
+[data-theme="light"] .edu-meta .gpa{color:#b45309;background:rgba(251,191,36,.14);border-color:rgba(180,83,9,.3)}
 
 /* ============ CONTACT ============ */
 .contact-panel{
@@ -968,14 +970,14 @@ nav.links a.active::after{transform:scaleX(1)}
         <h3>Bachelor's Degree — Network Engineering</h3>
         <div class="school">Technical College of Telecom &amp; Information (TCTI) · Riyadh, SA</div>
       </div>
-      <div class="edu-meta"><span class="gpa">GPA 4.47 / 5</span><br>2021 — 2023</div>
+      <div class="edu-meta"><span class="edu-period">2021 — 2023</span><br><span class="gpa">GPA 4.47 / 5</span></div>
     </div>
     <div class="edu-row reveal d1">
       <div>
         <h3>Diploma — Network Administration</h3>
         <div class="school">Jubail Technical Institute (JTI) · Jubail Industrial City, SA</div>
       </div>
-      <div class="edu-meta"><span class="gpa">GPA 3.67 / 4</span><br>2019 — 2021</div>
+      <div class="edu-meta"><span class="edu-period">2019 — 2021</span><br><span class="gpa">GPA 3.67 / 4</span></div>
     </div>
   </div>
 </section>
