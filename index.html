@@ -195,13 +195,15 @@ h1 .grad{
 .vendor-ticker:hover .ticker-track{animation-play-state:paused}
 .ticker-track{display:flex;gap:0;width:max-content;animation:ticker 42s linear infinite;align-items:center}
 .t-set{display:flex;align-items:center}
+.t-set[aria-hidden="true"]{display:none}
+.vendor-ticker.anim-on .t-set[aria-hidden="true"]{display:flex}
 .t-logo{display:inline-flex;align-items:center;justify-content:center;width:104px;height:34px;margin-right:10px}
 .t-logo img{height:24px;width:auto;max-width:92px;object-fit:contain}
 .t-logo.t-sq img{height:34px;max-width:60px}
 .t-blk img{filter:brightness(0) invert(1)}
 [data-theme="light"] .t-blk img{filter:none}
 @keyframes ticker{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.ticker-track{animation:none;flex-wrap:wrap;justify-content:center;width:100%;padding:0 8px}.t-logo{margin:3px 10px}}
+@media (prefers-reduced-motion:reduce){.ticker-track{animation:none;flex-wrap:wrap;justify-content:center;width:100%;padding:0 8px}.t-logo{margin:3px 10px}.vendor-ticker .t-set[aria-hidden="true"]{display:none}}
 
 /* hero node card */
 .node-card{
@@ -1114,6 +1116,16 @@ nav.links a.active::after{transform:scaleX(1)}
   els.forEach(el => io.observe(el));
 })();
 
+/* ---------- Vendor ticker: enable seamless loop only when animating ---------- */
+(function(){
+  const ticker = document.querySelector('.vendor-ticker');
+  if(!ticker) return;
+  const track = ticker.querySelector('.ticker-track');
+  if(track && getComputedStyle(track).animationName === 'ticker'){
+    ticker.classList.add('anim-on');
+  }
+})();
+
 /* ---------- Terminal typewriter (hero card) ---------- */
 (function(){
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1128,6 +1140,7 @@ nav.links a.active::after{transform:scaleX(1)}
     'ip addr show',
     'dig alkhaldi.dev'
   ];
+  if(reduced){ host.textContent = cmds[0]; return; }
   let ci = 0, pos = 0, deleting = false;
   function tick(){
     const cmd = cmds[ci];
