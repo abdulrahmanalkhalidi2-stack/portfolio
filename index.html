@@ -181,6 +181,7 @@ h1 .grad{
 .stat{flex:1;padding:18px 12px;text-align:center;border-right:1px solid var(--border)}
 .stat:last-child{border-right:none}
 .stat b{font-family:var(--font-d);font-size:26px;font-weight:700;display:block;color:var(--ink)}
+.stat-cursor{display:inline-block;width:8px;height:14px;background:var(--accent);vertical-align:-1px;margin-left:4px;animation:blink 1.1s steps(1) infinite;border-radius:1px}
 .stat:nth-child(1) b{color:#3ecfff}
 .stat:nth-child(2) b{color:#34d399}
 .stat:nth-child(3) b{color:#fbbf24}
@@ -501,7 +502,7 @@ nav.links a.active::after{transform:scaleX(1)}
         </a>
       </div>
       <div class="stat-row reveal d3">
-        <div class="stat"><b>2.5+</b><span>Years in the field</span></div>
+        <div class="stat"><b data-cursor="1">3+<span class="stat-cursor" aria-hidden="true"></span></b><span>Years in the field</span></div>
         <div class="stat"><b>2</b><span>National-scale employers</span></div>
         <div class="stat"><b class="sm">CCNA · ENCOR</b><span>Cisco certifications</span></div>
         <div class="stat"><b>15+</b><span>Vendors in production</span></div>
@@ -1095,11 +1096,13 @@ nav.links a.active::after{transform:scaleX(1)}
   };
   function animate(el){
     const {suf, num, dec} = fmt(el.textContent.trim());
+    const hasCursor = el.dataset.cursor === '1';
     const dur = 1400, t0 = performance.now();
     (function frame(t){
       const k = Math.min((t - t0) / dur, 1);
       const e = 1 - Math.pow(1 - k, 3);
       el.textContent = (num * e).toFixed(dec) + suf;
+      if(hasCursor) el.insertAdjacentHTML('beforeend', '<span class="stat-cursor" aria-hidden="true"></span>');
       if(k < 1) requestAnimationFrame(frame);
     })(t0);
   }
