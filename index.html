@@ -108,21 +108,6 @@ section{scroll-margin-top:calc(var(--nav-h) + 16px)}
 /* ============ BACKGROUND NET ============ */
 #net{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55}
 [data-theme="light"] #net{opacity:.65}
-/* blueprint grid overlay - engineering precision */
-#blueprint{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(62,207,255,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(62,207,255,.05) 1px, transparent 1px);
-  background-size:44px 44px;
-  mask-image:radial-gradient(ellipse 90% 70% at 50% 30%, #000 40%, transparent 100%);
-  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 30%, #000 40%, transparent 100%);
-}
-[data-theme="light"] #blueprint{
-  background-image:
-    linear-gradient(rgba(2,132,199,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(2,132,199,.06) 1px, transparent 1px);
-}
 /* soft vignette - focus + depth */
 #vignette{
   position:fixed;inset:0;z-index:0;pointer-events:none;
@@ -453,7 +438,7 @@ nav.links a.active::after{transform:scaleX(1)}
 
 /* ============ PRINT ============ */
 @media print{
-  header,#net,#blueprint,#vignette,#progress,#toTop,#themeBtn,#menuBtn,.btn-ghost{display:none!important}
+  header,#net,#vignette,#progress,#toTop,#themeBtn,#menuBtn,.btn-ghost{display:none!important}
   body{background:#fff;color:#111;font-size:11pt}
   .hero{min-height:auto;padding:0}
   .hero-grid{grid-template-columns:1fr}
@@ -472,7 +457,6 @@ nav.links a.active::after{transform:scaleX(1)}
 <body>
 
 <canvas id="net" aria-hidden="true"></canvas>
-<div id="blueprint" aria-hidden="true"></div>
 <div id="vignette" aria-hidden="true"></div>
 <div id="progress" aria-hidden="true"></div>
 
@@ -1200,8 +1184,8 @@ nav.links a.active::after{transform:scaleX(1)}
     const count = Math.min(70, Math.floor(innerWidth / 22));
     nodes = Array.from({length:count}, (_, i) => ({
       x: Math.random()*w, y: Math.random()*h,
-      vx: (Math.random()-.5)*.14*devicePixelRatio,
-      vy: (Math.random()-.5)*.14*devicePixelRatio,
+      vx: (Math.random()-.5)*.07*devicePixelRatio,
+      vy: (Math.random()-.5)*.07*devicePixelRatio,
       // hub: bigger integration node everything links through
       hub: i % 11 === 0,
       // secure: green-ringed "shielded" node (cybersecurity)
@@ -1214,7 +1198,7 @@ nav.links a.active::after{transform:scaleX(1)}
   const isLight = () => document.documentElement.dataset.theme === 'light';
 
   function spawnPacket(links){
-    if(packets.length >= 14 || !links.length || Math.random() > .08) return;
+    if(packets.length >= 16 || !links.length || Math.random() > .05) return;
     const link = links[(Math.random() * links.length) | 0];
     packets.push({ ax: link.ax, ay: link.ay, bx: link.bx, by: link.by, t: 0 });
   }
@@ -1253,7 +1237,7 @@ nav.links a.active::after{transform:scaleX(1)}
     spawnPacket(links);
     for(let k=packets.length-1;k>=0;k--){
       const p = packets[k];
-      p.t += .014;
+      p.t += .008;
       if(p.t >= 1){ packets.splice(k,1); continue; }
       const x = p.ax + (p.bx-p.ax)*p.t;
       const y = p.ay + (p.by-p.ay)*p.t;
