@@ -193,9 +193,8 @@ h1 .grad{
 .vendor-ticker:hover .ticker-track{animation-play-state:paused}
 .ticker-track{display:flex;gap:0;width:max-content;animation:ticker 42s linear infinite;align-items:center}
 .t-set{display:flex;align-items:center}
-.t-logo{display:inline-flex;align-items:center;justify-content:center;width:104px;height:34px;margin-right:10px;border-radius:10px;transition:background .2s}
-.t-logo:hover{background:var(--accent-dim)}
-.t-logo img{max-height:26px;max-width:92px;width:auto;height:auto;object-fit:contain}
+.t-logo{display:inline-flex;align-items:center;justify-content:center;width:104px;height:34px;margin-right:10px}
+.t-logo img{height:24px;width:auto;max-width:92px;object-fit:contain}
 .t-blk img{filter:brightness(0) invert(1)}
 [data-theme="light"] .t-blk img{filter:none}
 @keyframes ticker{to{transform:translateX(-50%)}}
@@ -509,50 +508,60 @@ nav.links a.active::after{transform:scaleX(1)}
       <div class="vendor-ticker reveal d4">
         <div class="ticker-track">
           <div class="t-set">
-            <a class="t-logo" href="https://www.cisco.com" target="_blank" rel="noopener" title="Cisco"><img src="assets/logos/cisco.svg" alt="Cisco"></a>
-            <a class="t-logo" href="https://www.huawei.com" target="_blank" rel="noopener" title="Huawei"><img src="assets/logos/huawei.svg" alt="Huawei"></a>
-            <a class="t-logo" href="https://www.juniper.net" target="_blank" rel="noopener" title="Juniper Networks"><img src="assets/logos/junipernetworks.svg" alt="Juniper Networks"></a>
-            <a class="t-logo" href="https://www.arubanetworks.com" target="_blank" rel="noopener" title="Aruba Networks"><img src="assets/logos/aruba.svg" alt="Aruba Networks"></a>
-            <a class="t-logo" href="https://www.fortinet.com" target="_blank" rel="noopener" title="Fortinet"><img src="assets/logos/fortinet.svg" alt="Fortinet"></a>
-            <a class="t-logo" href="https://www.hughes.com" target="_blank" rel="noopener" title="Hughes"><img src="assets/logos/hughes.svg" alt="Hughes"></a>
-            <a class="t-logo t-blk" href="https://www.splunk.com" target="_blank" rel="noopener" title="Splunk"><img src="assets/logos/splunk.svg" alt="Splunk"></a>
-            <a class="t-logo" href="https://www.trellix.com" target="_blank" rel="noopener" title="Trellix"><img src="assets/logos/trellix.svg" alt="Trellix"></a>
-            <a class="t-logo" href="https://grafana.com" target="_blank" rel="noopener" title="Grafana"><img src="assets/logos/grafana.svg" alt="Grafana"></a>
-            <a class="t-logo" href="https://www.hikvision.com" target="_blank" rel="noopener" title="Hikvision"><img src="assets/logos/hikvision.svg" alt="Hikvision"></a>
-            <a class="t-logo" href="https://www.axis.com" target="_blank" rel="noopener" title="Axis Communications"><img src="assets/logos/axis.svg" alt="Axis Communications"></a>
-            <a class="t-logo" href="https://www.grandstream.com" target="_blank" rel="noopener" title="Grandstream"><img src="assets/logos/grandstream.png" alt="Grandstream"></a>
-            <a class="t-logo t-blk" href="https://www.sony.com" target="_blank" rel="noopener" title="Sony"><img src="assets/logos/sony.svg" alt="Sony"></a>
-            <a class="t-logo" href="https://www.ibm.com" target="_blank" rel="noopener" title="IBM"><img src="assets/logos/ibm.svg" alt="IBM"></a>
-            <a class="t-logo" href="https://www.broadcom.com" target="_blank" rel="noopener" title="Broadcom"><img src="assets/logos/broadcom.svg" alt="Broadcom"></a>
-            <a class="t-logo" href="https://www.microsoft.com" target="_blank" rel="noopener" title="Microsoft"><img src="assets/logos/microsoft.svg" alt="Microsoft"></a>
-            <a class="t-logo" href="https://www.sap.com" target="_blank" rel="noopener" title="SAP"><img src="assets/logos/sap.svg" alt="SAP"></a>
-            <a class="t-logo t-blk" href="https://www.acronis.com" target="_blank" rel="noopener" title="Acronis"><img src="assets/logos/acronis.svg" alt="Acronis"></a>
-            <a class="t-logo t-blk" href="https://cobham-satcom.com" target="_blank" rel="noopener" title="Sea Tel (Cobham SATCOM)"><img src="assets/logos/cobham.png" alt="Sea Tel"></a>
-            <a class="t-logo" href="https://www.c-comsat.com" target="_blank" rel="noopener" title="iNetVu (C-COM)"><img src="assets/logos/inetvu.png" alt="iNetVu"></a>
-            <a class="t-logo t-blk" href="https://www.dmtradar.com" target="_blank" rel="noopener" title="DMT"><img src="assets/logos/dmt.png" alt="DMT"></a>
+            <span class="t-logo" title="Cisco"><img src="assets/logos/cisco.svg" alt="Cisco"></span>
+            <span class="t-logo" title="Huawei"><img src="assets/logos/huawei.svg" alt="Huawei"></span>
+            <span class="t-logo" title="Juniper Networks"><img src="assets/logos/junipernetworks.svg" alt="Juniper Networks"></span>
+            <span class="t-logo" title="Aruba Networks"><img src="assets/logos/aruba.svg" alt="Aruba Networks"></span>
+            <span class="t-logo" title="Fortinet"><img src="assets/logos/fortinet.svg" alt="Fortinet"></span>
+            <span class="t-logo" title="Hughes"><img src="assets/logos/hughes.svg" alt="Hughes"></span>
+            <span class="t-logo t-blk" title="Splunk"><img src="assets/logos/splunk.svg" alt="Splunk"></span>
+            <span class="t-logo" title="Trellix"><img src="assets/logos/trellix.svg" alt="Trellix"></span>
+            <span class="t-logo" title="Grafana"><img src="assets/logos/grafana.svg" alt="Grafana"></span>
+            <span class="t-logo" title="Hikvision"><img src="assets/logos/hikvision.svg" alt="Hikvision"></span>
+            <span class="t-logo" title="Axis Communications"><img src="assets/logos/axis.svg" alt="Axis Communications"></span>
+            <span class="t-logo" title="Grandstream"><img src="assets/logos/grandstream.png" alt="Grandstream"></span>
+            <span class="t-logo t-blk" title="Sony"><img src="assets/logos/sony.svg" alt="Sony"></span>
+            <span class="t-logo" title="IBM"><img src="assets/logos/ibm.svg" alt="IBM"></span>
+            <span class="t-logo" title="Broadcom"><img src="assets/logos/broadcom.svg" alt="Broadcom"></span>
+            <span class="t-logo" title="Microsoft"><img src="assets/logos/microsoft.svg" alt="Microsoft"></span>
+            <span class="t-logo" title="SAP"><img src="assets/logos/sap.svg" alt="SAP"></span>
+            <span class="t-logo t-blk" title="Acronis"><img src="assets/logos/acronis.svg" alt="Acronis"></span>
+            <span class="t-logo t-blk" title="Sea Tel (Cobham SATCOM)"><img src="assets/logos/cobham.png" alt="Sea Tel"></span>
+            <span class="t-logo" title="iNetVu (C-COM)"><img src="assets/logos/inetvu.png" alt="iNetVu"></span>
+            <span class="t-logo t-blk" title="DMT"><img src="assets/logos/dmt.png" alt="DMT"></span>
+            <span class="t-logo" title="Nozomi Networks"><img src="assets/logos/nozomi.svg" alt="Nozomi Networks"></span>
+            <span class="t-logo t-blk" title="WhatsUp Gold"><img src="assets/logos/wug.png" alt="WhatsUp Gold"></span>
+            <span class="t-logo" title="Elastix"><img src="assets/logos/elastix.png" alt="Elastix"></span>
+            <span class="t-logo" title="Geutebrück"><img src="assets/logos/geutebrueck.svg" alt="Geutebrück"></span>
+            <span class="t-logo t-blk" title="EXPLORER by Cobham"><img src="assets/logos/explorer.svg" alt="EXPLORER"></span>
           </div>
           <div class="t-set" aria-hidden="true">
-            <a class="t-logo" href="https://www.cisco.com" target="_blank" rel="noopener" title="Cisco"><img src="assets/logos/cisco.svg" alt=""></a>
-            <a class="t-logo" href="https://www.huawei.com" target="_blank" rel="noopener" title="Huawei"><img src="assets/logos/huawei.svg" alt=""></a>
-            <a class="t-logo" href="https://www.juniper.net" target="_blank" rel="noopener" title="Juniper Networks"><img src="assets/logos/junipernetworks.svg" alt=""></a>
-            <a class="t-logo" href="https://www.arubanetworks.com" target="_blank" rel="noopener" title="Aruba Networks"><img src="assets/logos/aruba.svg" alt=""></a>
-            <a class="t-logo" href="https://www.fortinet.com" target="_blank" rel="noopener" title="Fortinet"><img src="assets/logos/fortinet.svg" alt=""></a>
-            <a class="t-logo" href="https://www.hughes.com" target="_blank" rel="noopener" title="Hughes"><img src="assets/logos/hughes.svg" alt=""></a>
-            <a class="t-logo t-blk" href="https://www.splunk.com" target="_blank" rel="noopener" title="Splunk"><img src="assets/logos/splunk.svg" alt=""></a>
-            <a class="t-logo" href="https://www.trellix.com" target="_blank" rel="noopener" title="Trellix"><img src="assets/logos/trellix.svg" alt=""></a>
-            <a class="t-logo" href="https://grafana.com" target="_blank" rel="noopener" title="Grafana"><img src="assets/logos/grafana.svg" alt=""></a>
-            <a class="t-logo" href="https://www.hikvision.com" target="_blank" rel="noopener" title="Hikvision"><img src="assets/logos/hikvision.svg" alt=""></a>
-            <a class="t-logo" href="https://www.axis.com" target="_blank" rel="noopener" title="Axis Communications"><img src="assets/logos/axis.svg" alt=""></a>
-            <a class="t-logo" href="https://www.grandstream.com" target="_blank" rel="noopener" title="Grandstream"><img src="assets/logos/grandstream.png" alt=""></a>
-            <a class="t-logo t-blk" href="https://www.sony.com" target="_blank" rel="noopener" title="Sony"><img src="assets/logos/sony.svg" alt=""></a>
-            <a class="t-logo" href="https://www.ibm.com" target="_blank" rel="noopener" title="IBM"><img src="assets/logos/ibm.svg" alt=""></a>
-            <a class="t-logo" href="https://www.broadcom.com" target="_blank" rel="noopener" title="Broadcom"><img src="assets/logos/broadcom.svg" alt=""></a>
-            <a class="t-logo" href="https://www.microsoft.com" target="_blank" rel="noopener" title="Microsoft"><img src="assets/logos/microsoft.svg" alt=""></a>
-            <a class="t-logo" href="https://www.sap.com" target="_blank" rel="noopener" title="SAP"><img src="assets/logos/sap.svg" alt=""></a>
-            <a class="t-logo t-blk" href="https://www.acronis.com" target="_blank" rel="noopener" title="Acronis"><img src="assets/logos/acronis.svg" alt=""></a>
-            <a class="t-logo t-blk" href="https://cobham-satcom.com" target="_blank" rel="noopener" title="Sea Tel (Cobham SATCOM)"><img src="assets/logos/cobham.png" alt=""></a>
-            <a class="t-logo" href="https://www.c-comsat.com" target="_blank" rel="noopener" title="iNetVu (C-COM)"><img src="assets/logos/inetvu.png" alt=""></a>
-            <a class="t-logo t-blk" href="https://www.dmtradar.com" target="_blank" rel="noopener" title="DMT"><img src="assets/logos/dmt.png" alt=""></a>
+            <span class="t-logo" title="Cisco"><img src="assets/logos/cisco.svg" alt=""></span>
+            <span class="t-logo" title="Huawei"><img src="assets/logos/huawei.svg" alt=""></span>
+            <span class="t-logo" title="Juniper Networks"><img src="assets/logos/junipernetworks.svg" alt=""></span>
+            <span class="t-logo" title="Aruba Networks"><img src="assets/logos/aruba.svg" alt=""></span>
+            <span class="t-logo" title="Fortinet"><img src="assets/logos/fortinet.svg" alt=""></span>
+            <span class="t-logo" title="Hughes"><img src="assets/logos/hughes.svg" alt=""></span>
+            <span class="t-logo t-blk" title="Splunk"><img src="assets/logos/splunk.svg" alt=""></span>
+            <span class="t-logo" title="Trellix"><img src="assets/logos/trellix.svg" alt=""></span>
+            <span class="t-logo" title="Grafana"><img src="assets/logos/grafana.svg" alt=""></span>
+            <span class="t-logo" title="Hikvision"><img src="assets/logos/hikvision.svg" alt=""></span>
+            <span class="t-logo" title="Axis Communications"><img src="assets/logos/axis.svg" alt=""></span>
+            <span class="t-logo" title="Grandstream"><img src="assets/logos/grandstream.png" alt=""></span>
+            <span class="t-logo t-blk" title="Sony"><img src="assets/logos/sony.svg" alt=""></span>
+            <span class="t-logo" title="IBM"><img src="assets/logos/ibm.svg" alt=""></span>
+            <span class="t-logo" title="Broadcom"><img src="assets/logos/broadcom.svg" alt=""></span>
+            <span class="t-logo" title="Microsoft"><img src="assets/logos/microsoft.svg" alt=""></span>
+            <span class="t-logo" title="SAP"><img src="assets/logos/sap.svg" alt=""></span>
+            <span class="t-logo t-blk" title="Acronis"><img src="assets/logos/acronis.svg" alt=""></span>
+            <span class="t-logo t-blk" title="Sea Tel (Cobham SATCOM)"><img src="assets/logos/cobham.png" alt=""></span>
+            <span class="t-logo" title="iNetVu (C-COM)"><img src="assets/logos/inetvu.png" alt=""></span>
+            <span class="t-logo t-blk" title="DMT"><img src="assets/logos/dmt.png" alt=""></span>
+            <span class="t-logo" title="Nozomi Networks"><img src="assets/logos/nozomi.svg" alt=""></span>
+            <span class="t-logo t-blk" title="WhatsUp Gold"><img src="assets/logos/wug.png" alt=""></span>
+            <span class="t-logo" title="Elastix"><img src="assets/logos/elastix.png" alt=""></span>
+            <span class="t-logo" title="Geutebrück"><img src="assets/logos/geutebrueck.svg" alt=""></span>
+            <span class="t-logo t-blk" title="EXPLORER by Cobham"><img src="assets/logos/explorer.svg" alt=""></span>
           </div>
         </div>
       </div>
