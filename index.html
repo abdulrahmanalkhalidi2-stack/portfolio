@@ -91,7 +91,7 @@
 
 /* ============ BASE ============ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{
   font-family:var(--font-b);
   background:var(--bg);
@@ -162,7 +162,7 @@ nav.links a.active{color:var(--accent)}
 #menuBtn svg{width:18px;height:18px}
 
 /* ============ HERO ============ */
-.hero{position:relative;z-index:1;padding:calc(var(--nav-h) + 72px) 0 72px;min-height:100vh;display:flex;align-items:center}
+.hero{position:relative;z-index:1;padding:calc(var(--nav-h) + 72px) 0 72px;min-height:100vh;min-height:100svh;display:flex;align-items:center}
 .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center}
 .eyebrow{
   font-family:var(--font-m);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
