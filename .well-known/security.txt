@@ -1,0 +1,3 @@
+Contact: mailto:abdulrahman.al.khalidi2@gmail.com
+Preferred-Languages: en
+Canonical: https://alkhaldi.dev/.well-known/security.txt

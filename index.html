@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ============ SECURITY ============ -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
+<meta name="format-detection" content="telephone=no">
+<!-- © 2026 Abdulrahman Alkhaldi — all rights reserved. No part of this site or its code may be reproduced without written permission. -->
 <title>Abdulrahman Alkhaldi — Network Engineer</title>
 <meta name="description" content="Portfolio of Abdulrahman Alkhaldi — Network & System Integration Engineer specializing in enterprise network design, security, VoIP, and infrastructure management. Jubail, Saudi Arabia.">
 <meta property="og:type" content="website">
@@ -1277,7 +1284,7 @@ nav.links a.active::after{transform:scaleX(1)}
 <script>
 /* ---------- Email buttons: copy + fallback ---------- */
 (function(){
-  const EMAIL = 'abdulrahman.al.khalidi2@gmail.com';
+  const EMAIL = ['abdulrahman','.al','.khalidi2','@','gmail','.com'].join('');
   const GMAIL = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + EMAIL;
   const toast = document.getElementById('toast');
   let hideTimer = null;
@@ -1315,13 +1322,6 @@ nav.links a.active::after{transform:scaleX(1)}
       });
     });
   });
-
-  /* ---------- Visitor counter (silent, privacy-friendly) ---------- */
-  (function(){
-    try{
-      fetch('https://api.counterapi.dev/v1/alkhaldi.dev/visitors/up', {mode:'no-cors'}).catch(function(){});
-    }catch(e){}
-  })();
 })();
 </script>
 </body>

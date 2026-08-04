@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Block known AI scrapers that ignore robots.txt etiquette is handled at Cloudflare level.
+# This file exists to keep search engines indexing normally.
