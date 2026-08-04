@@ -189,16 +189,18 @@ h1 .grad{
 .stat span{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-family:var(--font-m)}
 
 /* vendor ticker */
-.vendor-ticker{margin-top:14px;max-width:560px;overflow:hidden;border:1px solid var(--border);border-radius:999px;background:color-mix(in srgb,var(--surface) 55%,transparent);padding:10px 0;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
-.ticker-track{display:flex;gap:0;width:max-content;animation:ticker 36s linear infinite;font-family:var(--font-m);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
-.ticker-track span{margin-right:34px}
-.ticker-track span:nth-child(4n+1){color:#3ecfff}
-.ticker-track span:nth-child(4n+2){color:#34d399}
-.ticker-track span:nth-child(4n+3){color:#fbbf24}
-.ticker-track span:nth-child(4n){color:#a78bfa}
-.ticker-track span::after{content:'·';margin-left:34px;color:var(--faint)}
+.vendor-ticker{margin-top:14px;max-width:560px;overflow:hidden;border:1px solid var(--border);border-radius:999px;background:color-mix(in srgb,var(--surface) 55%,transparent);padding:12px 0;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.vendor-ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track{display:flex;gap:0;width:max-content;animation:ticker 36s linear infinite;align-items:center}
+.t-logo{display:inline-flex;align-items:center;height:28px;margin-right:34px}
+.t-logo img{height:22px;width:auto;max-width:120px;object-fit:contain;filter:invert(1) grayscale(1) brightness(1.12) opacity(.72);transition:filter .25s,opacity .25s}
+.t-logo:hover img{filter:invert(1) grayscale(1) brightness(1.4) opacity(.95)}
+[data-theme="light"] .t-logo img{filter:grayscale(1) brightness(.45) opacity(.8)}
+[data-theme="light"] .t-logo:hover img{filter:grayscale(1) brightness(.3) opacity(1)}
+.t-chip{display:inline-flex;align-items:center;height:28px;margin-right:34px;font-family:var(--font-m);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);border:1px solid var(--border);border-radius:999px;padding:0 13px;transition:color .25s,border-color .25s}
+.t-chip:hover{color:var(--accent);border-color:var(--accent)}
 @keyframes ticker{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.ticker-track{animation:none;flex-wrap:wrap;justify-content:center;width:100%;padding:0 8px}.ticker-track span{margin:2px 14px}}
+@media (prefers-reduced-motion:reduce){.ticker-track{animation:none;flex-wrap:wrap;justify-content:center;width:100%;padding:0 8px}.t-logo,.t-chip{margin:3px 10px}}
 
 /* hero node card */
 .node-card{
@@ -507,7 +509,36 @@ nav.links a.active::after{transform:scaleX(1)}
       </div>
       <div class="vendor-ticker reveal d4" aria-hidden="true">
         <div class="ticker-track">
-          <span>Cisco</span><span>Huawei</span><span>Juniper</span><span>Aruba</span><span>Fortinet</span><span>Hughes</span><span>Splunk</span><span>Trellix</span><span>Nozomi</span><span>WhatsUp Gold</span><span>Elastix</span><span>Geutebrück</span><span>Acronis</span><span>Microsoft</span><span>SAP</span><span>Cisco</span><span>Huawei</span><span>Juniper</span><span>Aruba</span><span>Fortinet</span><span>Hughes</span><span>Splunk</span><span>Trellix</span><span>Nozomi</span><span>WhatsUp Gold</span><span>Elastix</span><span>Geutebrück</span><span>Acronis</span><span>Microsoft</span><span>SAP</span>
+          <span class="t-logo"><img src="assets/logos/cisco.svg" alt="Cisco"></span>
+          <span class="t-logo"><img src="assets/logos/huawei.svg" alt="Huawei"></span>
+          <span class="t-logo"><img src="assets/logos/junipernetworks.svg" alt="Juniper"></span>
+          <span class="t-logo"><img src="assets/logos/aruba.svg" alt="Aruba"></span>
+          <span class="t-logo"><img src="assets/logos/fortinet.svg" alt="Fortinet"></span>
+          <span class="t-logo"><img src="assets/logos/hughes.svg" alt="Hughes"></span>
+          <span class="t-logo"><img src="assets/logos/splunk.svg" alt="Splunk"></span>
+          <span class="t-logo"><img src="assets/logos/trellix.svg" alt="Trellix"></span>
+          <span class="t-chip">Nozomi</span>
+          <span class="t-chip">WhatsUp Gold</span>
+          <span class="t-chip">Elastix</span>
+          <span class="t-chip">Geutebrück</span>
+          <span class="t-logo"><img src="assets/logos/acronis.svg" alt="Acronis"></span>
+          <span class="t-logo"><img src="assets/logos/microsoft.svg" alt="Microsoft"></span>
+          <span class="t-logo"><img src="assets/logos/sap.svg" alt="SAP"></span>
+          <span class="t-logo"><img src="assets/logos/cisco.svg" alt="Cisco"></span>
+          <span class="t-logo"><img src="assets/logos/huawei.svg" alt="Huawei"></span>
+          <span class="t-logo"><img src="assets/logos/junipernetworks.svg" alt="Juniper"></span>
+          <span class="t-logo"><img src="assets/logos/aruba.svg" alt="Aruba"></span>
+          <span class="t-logo"><img src="assets/logos/fortinet.svg" alt="Fortinet"></span>
+          <span class="t-logo"><img src="assets/logos/hughes.svg" alt="Hughes"></span>
+          <span class="t-logo"><img src="assets/logos/splunk.svg" alt="Splunk"></span>
+          <span class="t-logo"><img src="assets/logos/trellix.svg" alt="Trellix"></span>
+          <span class="t-chip">Nozomi</span>
+          <span class="t-chip">WhatsUp Gold</span>
+          <span class="t-chip">Elastix</span>
+          <span class="t-chip">Geutebrück</span>
+          <span class="t-logo"><img src="assets/logos/acronis.svg" alt="Acronis"></span>
+          <span class="t-logo"><img src="assets/logos/microsoft.svg" alt="Microsoft"></span>
+          <span class="t-logo"><img src="assets/logos/sap.svg" alt="SAP"></span>
         </div>
       </div>
     </div>
