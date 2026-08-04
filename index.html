@@ -1116,11 +1116,13 @@ nav.links a.active::after{transform:scaleX(1)}
   const host = document.querySelector('.node-top .tt-c');
   if(!host || reduced) return;
   const cmds = [
-    'whoami → net eng',
-    'ping → 99.9% up',
-    'show ip route → OSPF',
-    'ssh prod-net → ok',
-    'uptime → 2.5+ yrs'
+    'whoami',
+    'ping -c 3 8.8.8.8',
+    'traceroute 1.1.1.1',
+    'ssh core-switch-01',
+    'netstat -tulpn',
+    'ip addr show',
+    'dig alkhaldi.dev'
   ];
   let ci = 0, pos = 0, deleting = false;
   function tick(){
