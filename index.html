@@ -164,6 +164,7 @@ nav.links a.active{color:var(--accent)}
 /* ============ HERO ============ */
 .hero{position:relative;z-index:1;padding:calc(var(--nav-h) + 72px) 0 72px;min-height:100vh;min-height:100svh;display:flex;align-items:center}
 .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center}
+.hero-grid > *{min-width:0}
 .eyebrow{
   font-family:var(--font-m);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--accent);display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;
@@ -431,8 +432,16 @@ nav.links a.active::after{transform:scaleX(1)}
   .stat-row{margin-bottom:0}
   .stat{padding:12px 8px}
   .stat b{font-size:22px}
-  /* hide decorative terminal card on phones - saves ~536px */
-  .node-card{display:none}
+  /* show terminal card compact on phones - keeps STATUS/LOCATION/CORE/CERT/FOCUS data visible */
+  .node-card{display:block}
+  .node-top{padding:10px 14px}
+  .node-body{padding:18px 16px}
+  .avatar{width:52px;height:52px;border-radius:14px;font-size:26px;margin-bottom:12px;padding-top:1px}
+  .node-name{font-size:18px}
+  .node-role{margin:2px 0 12px}
+  .node-rows{margin-bottom:14px}
+  .node-row{padding:8px 0;font-size:12.5px}
+  .node-status{font-size:11.5px;padding:7px 12px}
   nav.links{display:none;position:absolute;top:calc(var(--nav-h) + 8px);left:12px;right:12px;flex-direction:column;align-items:stretch;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:10px;box-shadow:0 24px 60px -20px rgba(0,0,0,.55)}
   nav.links.open{display:flex}
   nav.links a{justify-content:flex-start;padding:13px 16px}
