@@ -1165,7 +1165,7 @@ nav.links a.active::after{transform:scaleX(1)}
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduced || !canvas.getContext){ canvas.style.display='none'; return; }
   const ctx = canvas.getContext('2d');
-  let w, h, nodes = [], raf;
+  let w, h, nodes = [], packets = [], raf;
 
   function resize(){
     w = canvas.width = innerWidth * devicePixelRatio;
@@ -1173,22 +1173,38 @@ nav.links a.active::after{transform:scaleX(1)}
     canvas.style.width = innerWidth + 'px';
     canvas.style.height = innerHeight + 'px';
     const count = Math.min(90, Math.floor(innerWidth / 18));
-    nodes = Array.from({length:count}, () => ({
+    nodes = Array.from({length:count}, (_, i) => ({
       x: Math.random()*w, y: Math.random()*h,
       vx: (Math.random()-.5)*.22*devicePixelRatio,
-      vy: (Math.random()-.5)*.22*devicePixelRatio
+      vy: (Math.random()-.5)*.22*devicePixelRatio,
+      // hub: bigger integration node everything links through
+      hub: i % 9 === 0,
+      // secure: green-ringed "shielded" node (cybersecurity)
+      secure: i % 7 === 3,
+      r: (i % 9 === 0 ? 2.4 : 1.3) * devicePixelRatio
     }));
+    packets = [];
   }
 
   const isLight = () => document.documentElement.dataset.theme === 'light';
+
+  function spawnPacket(links){
+    if(packets.length >= 26 || !links.length || Math.random() > .18) return;
+    const link = links[(Math.random() * links.length) | 0];
+    packets.push({ ax: link.ax, ay: link.ay, bx: link.bx, by: link.by, t: 0 });
+  }
 
   function step(){
     ctx.clearRect(0,0,w,h);
     const light = isLight();
     const accent = light ? '2,132,199' : '62,207,255';
+    const ok = light ? '5,150,105' : '52,211,153';
     const linkA = light ? .32 : .16;
     const nodeA = light ? .7 : .5;
     const linkR = Math.max(w,h) * .16;
+    const links = [];
+
+    // links first (behind)
     for(let i=0;i<nodes.length;i++){
       const n = nodes[i];
       n.x += n.vx; n.y += n.vy;
@@ -1198,13 +1214,47 @@ nav.links a.active::after{transform:scaleX(1)}
         const m = nodes[j], dx = n.x-m.x, dy = n.y-m.y, d2 = dx*dx+dy*dy;
         if(d2 < linkR*linkR){
           const a = (1 - Math.sqrt(d2)/linkR) * linkA;
-          ctx.strokeStyle = `rgba(${accent},${a})`;
+          // links to/from hubs slightly brighter (integration core)
+          const hubBoost = (n.hub || m.hub) ? 1.35 : 1;
+          ctx.strokeStyle = `rgba(${accent},${Math.min(a*hubBoost,.45)})`;
           ctx.lineWidth = devicePixelRatio;
           ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(m.x,m.y); ctx.stroke();
+          links.push({ ax:n.x, ay:n.y, bx:m.x, by:m.y });
         }
       }
-      ctx.fillStyle = `rgba(${accent},${nodeA})`;
-      ctx.beginPath(); ctx.arc(n.x, n.y, 1.3*devicePixelRatio, 0, 6.283); ctx.fill();
+    }
+
+    // data packets traveling the links (network traffic)
+    spawnPacket(links);
+    for(let k=packets.length-1;k>=0;k--){
+      const p = packets[k];
+      p.t += .018;
+      if(p.t >= 1){ packets.splice(k,1); continue; }
+      const x = p.ax + (p.bx-p.ax)*p.t;
+      const y = p.ay + (p.by-p.ay)*p.t;
+      ctx.fillStyle = `rgba(${accent},${light?.5:.75})`;
+      ctx.beginPath(); ctx.arc(x, y, 1.6*devicePixelRatio, 0, 6.283); ctx.fill();
+      // soft trail
+      ctx.fillStyle = `rgba(${accent},.22)`;
+      ctx.beginPath(); ctx.arc(x, y, 3.2*devicePixelRatio, 0, 6.283); ctx.fill();
+    }
+
+    // nodes
+    for(let i=0;i<nodes.length;i++){
+      const n = nodes[i];
+      if(n.secure){
+        // cybersecurity: green glowing ring around shielded node
+        ctx.strokeStyle = `rgba(${ok},${light?.5:.55})`;
+        ctx.lineWidth = devicePixelRatio;
+        ctx.beginPath(); ctx.arc(n.x, n.y, n.r*2.6, 0, 6.283); ctx.stroke();
+      }
+      ctx.fillStyle = n.secure ? `rgba(${ok},${nodeA})` : `rgba(${accent},${nodeA})`;
+      ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, 6.283); ctx.fill();
+      if(n.hub){
+        // integration: soft halo around hub nodes
+        ctx.fillStyle = `rgba(${accent},.1)`;
+        ctx.beginPath(); ctx.arc(n.x, n.y, n.r*3.4, 0, 6.283); ctx.fill();
+      }
     }
     raf = requestAnimationFrame(step);
   }
