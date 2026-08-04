@@ -186,6 +186,10 @@ h1 .grad{
 .stat:nth-child(2) b{color:#34d399}
 .stat:nth-child(3) b{color:#fbbf24}
 .stat:nth-child(4) b{color:#a78bfa}
+/* creative stat decorations (pseudo-elements survive the counter animation) */
+.stat:nth-child(2) b::after{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#34d399;margin-left:6px;box-shadow:0 0 8px #34d399;animation:pulse 1.8s infinite;vertical-align:middle}
+.stat:nth-child(3) b::before{content:"✓";color:#34d399;font-weight:700;margin-right:6px;text-shadow:0 0 10px rgba(52,211,153,.6)}
+.stat:nth-child(4) b::after{content:"▲";font-size:13px;margin-left:5px;vertical-align:3px;color:#a78bfa;text-shadow:0 0 8px rgba(167,139,250,.6)}
 .stat b.sm{font-size:17px;line-height:1.35;letter-spacing:.02em}
 .stat span{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-family:var(--font-m)}
 
