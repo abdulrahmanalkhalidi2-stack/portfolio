@@ -417,39 +417,6 @@ nav.links a.active::after{transform:scaleX(1)}
 }
 @keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
-/* ============ TOPOLOGY ============ */
-.topo-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.topo{width:100%;height:auto;display:block;font-family:var(--font-m)}
-.topo .lbl{font-size:12px;letter-spacing:.03em}
-.topo .lbl-s{font-size:10.5px}
-.topo g.dev{cursor:pointer}
-.topo .box{fill:var(--surface);stroke:var(--border);stroke-width:1.5;transition:fill .25s,stroke .25s}
-.topo .cloud{fill:color-mix(in srgb,var(--accent-dim) 60%,transparent);stroke:var(--border-2);stroke-width:1.5;stroke-dasharray:5 4;transition:fill .25s,stroke .25s}
-.topo .txt{fill:var(--ink-soft);transition:fill .25s}
-.topo .txt-a{fill:var(--accent)}
-.topo .lnk{stroke:var(--border);stroke-width:1.5;transition:stroke .25s,opacity .25s}
-.topo .lnk-a{stroke:var(--accent);opacity:.55}
-.topo .lnk-v{stroke:var(--ok);opacity:.6;stroke-dasharray:4 4}
-.topo .dot{fill:var(--accent);opacity:0}
-.topo g.dev:hover .box,.topo g.dev:focus .box{fill:var(--accent-dim);stroke:var(--accent)}
-.topo g.dev:hover .txt,.topo g.dev:focus .txt{fill:var(--accent)}
-.topo .pk{fill:var(--accent);animation:pkMove 4.5s linear infinite}
-@keyframes pkMove{0%{opacity:0}8%{opacity:1}92%{opacity:1}100%{opacity:0}}
-@media (prefers-reduced-motion:reduce){.topo .pk{display:none}}
-.topo-hint{font-family:var(--font-m);font-size:12px;color:var(--faint);text-align:center;margin-top:14px;letter-spacing:.04em}
-.topo-legend{display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:center;margin-top:12px;font-family:var(--font-m);font-size:11.5px;color:var(--muted)}
-.topo-legend span{display:inline-flex;align-items:center;gap:7px}
-.topo-legend i{width:14px;height:3px;border-radius:2px;display:inline-block}
-.topo-legend .lg-core{background:var(--accent);opacity:.6}
-.topo-legend .lg-vsat{background:var(--ok);opacity:.7}
-.topo-legend .lg-std{background:var(--border)}
-/* desktop topology visible by default, mobile variant hidden */
-.topo-mobile{display:none}
-@media(max-width:720px){
-  .topo-desktop{display:none}
-  .topo-mobile{display:block}
-}
-
 /* ============ REVEAL ============ */
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
 .reveal.in{opacity:1;transform:none}
@@ -523,22 +490,6 @@ nav.links a.active::after{transform:scaleX(1)}
   .contact-panel::before{display:none}
   a{color:#0369a1}
 }
-.topo:has(g.dev[data-id="inet"]:hover) .e-inet{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="fgA"]:hover) .e-fgA{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="fgB"]:hover) .e-fgB{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="c1"]:hover) .e-c1{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="c2"]:hover) .e-c2{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="d1"]:hover) .e-d1{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="d2"]:hover) .e-d2{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="a1"]:hover) .e-a1{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="a2"]:hover) .e-a2{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="vsat"]:hover) .e-vsat{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="inetvu"]:hover) .e-inetvu{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="voip"]:hover) .e-voip{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="cctv"]:hover) .e-cctv{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="ap"]:hover) .e-ap{stroke:var(--accent);opacity:.95}
-.topo:has(g.dev[data-id="ws"]:hover) .e-ws{stroke:var(--accent);opacity:.95}
-.topo g.dev:focus{outline:none}
 </style>
 </head>
 <body>
@@ -556,7 +507,6 @@ nav.links a.active::after{transform:scaleX(1)}
       <a href="#experience">Experience</a>
       <a href="#training">Training</a>
       <a href="#projects">Projects</a>
-      <a href="#topology">Topology</a>
       <a href="#skills">Skills</a>
       <a href="#certifications">Certifications</a>
       <a href="#education">Education</a>
@@ -1004,34 +954,11 @@ nav.links a.active::after{transform:scaleX(1)}
   </div>
 </section>
 
-<!-- ================= TOPOLOGY ================= -->
-<section class="sec sec-tight" id="topology" style="background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--bg-2) 55%,transparent) 12%,color-mix(in srgb,var(--bg-2) 55%,transparent) 88%,transparent)">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-tag">05 · Topology</div>
-      <h2>Network operations lab</h2>
-      <p>A model of the production patterns I run: an HA firewall pair, redundant core, distribution and access layers, and a VSAT backup path into the core. Hover any device to trace its links.</p>
-    </div>
-    <div class="topo-wrap reveal">
-<svg class="topo topo-desktop" viewBox="0 0 900 560" role="img" aria-label="Network topology: HA firewalls, redundant core, distribution and access layers, VSAT backup"><g><line class="lnk-a e-inet e-fgA" data-a="inet" data-b="fgA"/><line class="lnk-a e-inet e-fgB" data-a="inet" data-b="fgB"/><line class="lnk e-fgA e-fgB" data-a="fgA" data-b="fgB" stroke-dasharray="4 4"/><line class="lnk-a e-fgA e-c1" data-a="fgA" data-b="c1"/><line class="lnk-a e-fgB e-c2" data-a="fgB" data-b="c2"/><line class="lnk-a e-c1 e-c2" data-a="c1" data-b="c2"/><line class="lnk e-c1 e-d1" data-a="c1" data-b="d1"/><line class="lnk e-c2 e-d2" data-a="c2" data-b="d2"/><line class="lnk e-d1 e-a1" data-a="d1" data-b="a1"/><line class="lnk e-d2 e-a2" data-a="d2" data-b="a2"/><line class="lnk e-a1 e-voip" data-a="a1" data-b="voip"/><line class="lnk e-a1 e-cctv" data-a="a1" data-b="cctv"/><line class="lnk e-a2 e-ap" data-a="a2" data-b="ap"/><line class="lnk e-a2 e-ws" data-a="a2" data-b="ws"/><line class="lnk-v e-vsat e-inetvu" data-a="vsat" data-b="inetvu"/><line class="lnk-v e-inetvu e-c1" data-a="inetvu" data-b="c1" stroke-dasharray="4 4"/></g><g><g class="dev" data-id="inet" tabindex="0"><rect class="cloud" x="405" y="20" width="90" height="44" rx="8"/><text x="450.0" y="46.0" class="txt lbl" text-anchor="middle">Internet</text><text x="450.0" y="57.0" class="txt lbl-s" text-anchor="middle">WAN</text></g><g class="dev" data-id="fgA" tabindex="0"><rect class="box" x="335" y="110" width="110" height="50" rx="8"/><text x="390.0" y="139.0" class="txt lbl" text-anchor="middle">FortiGate A</text><text x="390.0" y="150.0" class="txt lbl-s" text-anchor="middle">SSL VPN · HA</text></g><g class="dev" data-id="fgB" tabindex="0"><rect class="box" x="455" y="110" width="110" height="50" rx="8"/><text x="510.0" y="139.0" class="txt lbl" text-anchor="middle">FortiGate B</text><text x="510.0" y="150.0" class="txt lbl-s" text-anchor="middle">SSL VPN · HA</text></g><g class="dev" data-id="c1" tabindex="0"><rect class="box" x="335" y="200" width="110" height="50" rx="8"/><text x="390.0" y="229.0" class="txt lbl" text-anchor="middle">Core-1</text><text x="390.0" y="240.0" class="txt lbl-s" text-anchor="middle">Cisco 9300</text></g><g class="dev" data-id="c2" tabindex="0"><rect class="box" x="455" y="200" width="110" height="50" rx="8"/><text x="510.0" y="229.0" class="txt lbl" text-anchor="middle">Core-2</text><text x="510.0" y="240.0" class="txt lbl-s" text-anchor="middle">Cisco 9300</text></g><g class="dev" data-id="d1" tabindex="0"><rect class="box" x="215" y="300" width="100" height="46" rx="8"/><text x="265.0" y="327.0" class="txt lbl" text-anchor="middle">Dist-1</text><text x="265.0" y="338.0" class="txt lbl-s" text-anchor="middle">Cisco</text></g><g class="dev" data-id="d2" tabindex="0"><rect class="box" x="585" y="300" width="100" height="46" rx="8"/><text x="635.0" y="327.0" class="txt lbl" text-anchor="middle">Dist-2</text><text x="635.0" y="338.0" class="txt lbl-s" text-anchor="middle">Cisco</text></g><g class="dev" data-id="a1" tabindex="0"><rect class="box" x="90" y="400" width="100" height="44" rx="8"/><text x="140.0" y="426.0" class="txt lbl" text-anchor="middle">Access-1</text><text x="140.0" y="437.0" class="txt lbl-s" text-anchor="middle">PoE</text></g><g class="dev" data-id="a2" tabindex="0"><rect class="box" x="710" y="400" width="100" height="44" rx="8"/><text x="760.0" y="426.0" class="txt lbl" text-anchor="middle">Access-2</text><text x="760.0" y="437.0" class="txt lbl-s" text-anchor="middle">PoE</text></g><g class="dev" data-id="vsat" tabindex="0"><rect class="box" x="20" y="300" width="95" height="46" rx="8"/><text x="67.5" y="327.0" class="txt lbl" text-anchor="middle">VSAT</text><text x="67.5" y="338.0" class="txt lbl-s" text-anchor="middle">Hughes</text></g><g class="dev" data-id="inetvu" tabindex="0"><rect class="box" x="20" y="400" width="95" height="44" rx="8"/><text x="67.5" y="426.0" class="txt lbl" text-anchor="middle">iNetVu</text><text x="67.5" y="437.0" class="txt lbl-s" text-anchor="middle">C-COM</text></g><g class="dev" data-id="voip" tabindex="0"><rect class="box" x="45" y="505" width="85" height="34" rx="8"/><text x="87.5" y="526.0" class="txt lbl" text-anchor="middle">VoIP</text><text x="87.5" y="537.0" class="txt lbl-s" text-anchor="middle">CUCM</text></g><g class="dev" data-id="cctv" tabindex="0"><rect class="box" x="145" y="505" width="85" height="34" rx="8"/><text x="187.5" y="526.0" class="txt lbl" text-anchor="middle">CCTV</text><text x="187.5" y="537.0" class="txt lbl-s" text-anchor="middle">IP cams</text></g><g class="dev" data-id="ap" tabindex="0"><rect class="box" x="645" y="505" width="85" height="34" rx="8"/><text x="687.5" y="526.0" class="txt lbl" text-anchor="middle">WiFi AP</text><text x="687.5" y="537.0" class="txt lbl-s" text-anchor="middle">Aruba</text></g><g class="dev" data-id="ws" tabindex="0"><rect class="box" x="760" y="505" width="85" height="34" rx="8"/><text x="802.5" y="526.0" class="txt lbl" text-anchor="middle">Users</text><text x="802.5" y="537.0" class="txt lbl-s" text-anchor="middle">AD domain</text></g></g><g><circle class="pk" r="3" data-a="inet" data-b="fgA"><animateMotion dur="4.5s" begin="0s" repeatCount="indefinite" path="M450,42 L390,110"/></circle><circle class="pk" r="3" data-a="fgA" data-b="c1"><animateMotion dur="4.5s" begin="1.2s" repeatCount="indefinite" path="M390,135 L390,200"/></circle><circle class="pk" r="3" data-a="c1" data-b="d1"><animateMotion dur="4.5s" begin="2.4s" repeatCount="indefinite" path="M380,225 L265,300"/></circle><circle class="pk" r="3" data-a="vsat" data-b="inetvu"><animateMotion dur="6s" begin="0s" repeatCount="indefinite" path="M67,323 L67,400"/></circle></g></svg>
-<svg class="topo topo-mobile" viewBox="0 0 400 710" role="img" aria-label="Network topology (mobile view)"><g><line class="lnk-a e-inet e-fgA" data-a="inet" data-b="fgA"/><line class="lnk-a e-inet e-fgB" data-a="inet" data-b="fgB"/><line class="lnk e-fgA e-fgB" data-a="fgA" data-b="fgB" stroke-dasharray="4 4"/><line class="lnk-a e-fgA e-c1" data-a="fgA" data-b="c1"/><line class="lnk-a e-fgB e-c2" data-a="fgB" data-b="c2"/><line class="lnk-a e-c1 e-c2" data-a="c1" data-b="c2"/><line class="lnk e-c1 e-d1" data-a="c1" data-b="d1"/><line class="lnk e-c2 e-d2" data-a="c2" data-b="d2"/><line class="lnk e-d1 e-a1" data-a="d1" data-b="a1"/><line class="lnk e-d2 e-a2" data-a="d2" data-b="a2"/><line class="lnk-v e-vsat e-inetvu" data-a="vsat" data-b="inetvu"/><line class="lnk-v e-inetvu e-c1" data-a="inetvu" data-b="c1" stroke-dasharray="4 4"/><line class="lnk e-a1 e-voip" data-a="a1" data-b="voip"/><line class="lnk e-a1 e-cctv" data-a="a1" data-b="cctv"/><line class="lnk e-a2 e-ap" data-a="a2" data-b="ap"/><line class="lnk e-a2 e-ws" data-a="a2" data-b="ws"/></g><g><g class="dev" data-id="inet" tabindex="0"><rect class="cloud" x="155" y="20" width="90" height="44" rx="8"/><text x="200.0" y="46.0" class="txt lbl" text-anchor="middle">Internet</text><text x="200.0" y="57.0" class="txt lbl-s" text-anchor="middle">WAN</text></g><g class="dev" data-id="fgA" tabindex="0"><rect class="box" x="40" y="110" width="130" height="50" rx="8"/><text x="105.0" y="139.0" class="txt lbl" text-anchor="middle">FortiGate A</text><text x="105.0" y="150.0" class="txt lbl-s" text-anchor="middle">SSL VPN · HA</text></g><g class="dev" data-id="fgB" tabindex="0"><rect class="box" x="230" y="110" width="130" height="50" rx="8"/><text x="295.0" y="139.0" class="txt lbl" text-anchor="middle">FortiGate B</text><text x="295.0" y="150.0" class="txt lbl-s" text-anchor="middle">SSL VPN · HA</text></g><g class="dev" data-id="c1" tabindex="0"><rect class="box" x="40" y="210" width="130" height="46" rx="8"/><text x="105.0" y="237.0" class="txt lbl" text-anchor="middle">Core-1</text><text x="105.0" y="248.0" class="txt lbl-s" text-anchor="middle">Cisco 9300</text></g><g class="dev" data-id="c2" tabindex="0"><rect class="box" x="230" y="210" width="130" height="46" rx="8"/><text x="295.0" y="237.0" class="txt lbl" text-anchor="middle">Core-2</text><text x="295.0" y="248.0" class="txt lbl-s" text-anchor="middle">Cisco 9300</text></g><g class="dev" data-id="d1" tabindex="0"><rect class="box" x="40" y="320" width="130" height="44" rx="8"/><text x="105.0" y="346.0" class="txt lbl" text-anchor="middle">Dist-1</text><text x="105.0" y="357.0" class="txt lbl-s" text-anchor="middle">Cisco</text></g><g class="dev" data-id="d2" tabindex="0"><rect class="box" x="230" y="320" width="130" height="44" rx="8"/><text x="295.0" y="346.0" class="txt lbl" text-anchor="middle">Dist-2</text><text x="295.0" y="357.0" class="txt lbl-s" text-anchor="middle">Cisco</text></g><g class="dev" data-id="a1" tabindex="0"><rect class="box" x="40" y="430" width="130" height="44" rx="8"/><text x="105.0" y="456.0" class="txt lbl" text-anchor="middle">Access-1</text><text x="105.0" y="467.0" class="txt lbl-s" text-anchor="middle">PoE</text></g><g class="dev" data-id="a2" tabindex="0"><rect class="box" x="230" y="430" width="130" height="44" rx="8"/><text x="295.0" y="456.0" class="txt lbl" text-anchor="middle">Access-2</text><text x="295.0" y="467.0" class="txt lbl-s" text-anchor="middle">PoE</text></g><g class="dev" data-id="vsat" tabindex="0"><rect class="box" x="40" y="540" width="130" height="44" rx="8"/><text x="105.0" y="566.0" class="txt lbl" text-anchor="middle">VSAT</text><text x="105.0" y="577.0" class="txt lbl-s" text-anchor="middle">Hughes</text></g><g class="dev" data-id="inetvu" tabindex="0"><rect class="box" x="230" y="540" width="130" height="44" rx="8"/><text x="295.0" y="566.0" class="txt lbl" text-anchor="middle">iNetVu</text><text x="295.0" y="577.0" class="txt lbl-s" text-anchor="middle">C-COM</text></g><g class="dev" data-id="voip" tabindex="0"><rect class="box" x="20" y="650" width="85" height="34" rx="8"/><text x="62.5" y="671.0" class="txt lbl" text-anchor="middle">VoIP</text><text x="62.5" y="682.0" class="txt lbl-s" text-anchor="middle">CUCM</text></g><g class="dev" data-id="cctv" tabindex="0"><rect class="box" x="115" y="650" width="85" height="34" rx="8"/><text x="157.5" y="671.0" class="txt lbl" text-anchor="middle">CCTV</text><text x="157.5" y="682.0" class="txt lbl-s" text-anchor="middle">IP cams</text></g><g class="dev" data-id="ap" tabindex="0"><rect class="box" x="210" y="650" width="85" height="34" rx="8"/><text x="252.5" y="671.0" class="txt lbl" text-anchor="middle">WiFi AP</text><text x="252.5" y="682.0" class="txt lbl-s" text-anchor="middle">Aruba</text></g><g class="dev" data-id="ws" tabindex="0"><rect class="box" x="305" y="650" width="85" height="34" rx="8"/><text x="347.5" y="671.0" class="txt lbl" text-anchor="middle">Users</text><text x="347.5" y="682.0" class="txt lbl-s" text-anchor="middle">AD</text></g></g><g><circle class="pk" r="3" data-a="inet" data-b="fgA"><animateMotion dur="4.5s" begin="0s" repeatCount="indefinite" path="M200,42 L105,110"/></circle><circle class="pk" r="3" data-a="fgA" data-b="c1"><animateMotion dur="4.5s" begin="1.2s" repeatCount="indefinite" path="M105,135 L105,210"/></circle><circle class="pk" r="3" data-a="vsat" data-b="inetvu"><animateMotion dur="5s" begin="0s" repeatCount="indefinite" path="M105,562 L295,562"/></circle></g></svg>
-    </div>
-    <div class="topo-hint">hover / tap a device to trace its path</div>
-    <div class="topo-legend">
-      <span><i class="lg-core"></i>core &amp; edge</span>
-      <span><i class="lg-vsat"></i>VSAT backup</span>
-      <span><i class="lg-std"></i>access links</span>
-    </div>
-  </div>
-</section>
-
-
-
 <!-- ================= SKILLS ================= -->
 <section class="sec" id="skills">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-tag">06 · Capabilities</div>
+      <div class="sec-tag">05 · Capabilities</div>
       <h2>Skills &amp; technologies</h2>
       <p>From switching and routing to SIEM operations, satellite systems, cybersecurity, and the interfaces that make it all usable: I work the full stack end to end.</p>
     </div>
@@ -1056,7 +983,7 @@ nav.links a.active::after{transform:scaleX(1)}
 <section class="sec sec-tight" id="certifications" style="background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--bg-2) 55%,transparent) 12%,color-mix(in srgb,var(--bg-2) 55%,transparent) 88%,transparent)">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-tag">07 · Credentials</div>
+      <div class="sec-tag">06 · Credentials</div>
       <h2>Certifications</h2>
     </div>
     <div class="cert-grid">
@@ -1084,7 +1011,7 @@ nav.links a.active::after{transform:scaleX(1)}
 <section class="sec sec-tight" id="education">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-tag">08 · Education</div>
+      <div class="sec-tag">07 · Education</div>
       <h2>Academic background</h2>
     </div>
     <div class="edu-row reveal">
@@ -1108,7 +1035,7 @@ nav.links a.active::after{transform:scaleX(1)}
 <section class="sec" id="contact">
   <div class="wrap">
     <div class="contact-panel reveal">
-      <div class="sec-tag" style="justify-content:center">09 · Connect</div>
+      <div class="sec-tag" style="justify-content:center">08 · Connect</div>
       <h2>Let's build something reliable.</h2>
       <p>I'm open to network engineering and system integration roles. If you're hiring, or you've got a network problem worth solving, get in touch.</p>
       <div class="contact-grid">
